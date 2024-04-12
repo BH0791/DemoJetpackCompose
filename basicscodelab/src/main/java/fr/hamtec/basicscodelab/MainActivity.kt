@@ -16,18 +16,19 @@ import androidx.compose.ui.unit.dp
 import fr.hamtec.basicscodelab.ui.theme.DemoJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             DemoJetpackComposeTheme {
-                    MyApp(modifier = Modifier.fillMaxSize())
+                MyApp(modifier = Modifier.fillMaxSize())
             }
         }
     }
 }
+
 @Composable
-fun MyApp(modifier : Modifier = Modifier){
+fun MyApp(modifier : Modifier = Modifier) {
     Surface(
             modifier = modifier,
             color = MaterialTheme.colorScheme.background
@@ -35,11 +36,9 @@ fun MyApp(modifier : Modifier = Modifier){
         Greeting(name = "Android")
     }
 }
+
 @Composable
-fun Greeting(
-        name: String,
-        modifier: Modifier = Modifier
-) {
+fun Greeting(name : String, modifier : Modifier = Modifier) {
     Surface(color = MaterialTheme.colorScheme.primary) {
         Text(
                 text = "Hello $name!",
@@ -55,7 +54,8 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
-@Preview(showBackground = true, name = "Seconde")
+
+@Preview(showBackground = true, name = "Réutiliser des composables")
 @Composable
 fun MyAppPrerview() {
     MyApp()
