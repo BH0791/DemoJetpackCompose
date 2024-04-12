@@ -7,12 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import fr.hamtec.basicscodelab.ui.theme.DemoJetpackComposeTheme
@@ -38,7 +36,10 @@ fun MyApp(modifier : Modifier = Modifier){
     }
 }
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(
+        name: String,
+        modifier: Modifier = Modifier
+) {
     Surface(color = MaterialTheme.colorScheme.primary) {
         Text(
                 text = "Hello $name!",
@@ -47,14 +48,14 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, name = "Premiers pas dans Compose")
 @Composable
 fun GreetingPreview() {
     DemoJetpackComposeTheme {
         Greeting("Android")
     }
 }
-@Preview(showBackground = true)
+@Preview(showBackground = true, name = "Seconde")
 @Composable
 fun MyAppPrerview() {
     MyApp()
