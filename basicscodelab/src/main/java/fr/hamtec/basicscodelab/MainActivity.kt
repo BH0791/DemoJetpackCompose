@@ -115,18 +115,7 @@ fun OnboardingScreen(
     }
 }
 
-// ** ------------------------------------------------------------------------
-@Preview(showBackground = true, name = "Premiers pas dans Compose")
-@Composable
-fun GreetingPreview() {
-    DemoJetpackComposeTheme {
-        Column {
-            Greeting(name = "Android")
-            Greeting(name = "Compose")
-        }
-    }
-}
-
+// ** ------------------------------------------------------------------------------------ Preview -
 
 @Preview(showBackground = true, name = "Hisser un état", widthDp = 320, heightDp = 320)
 @Composable
@@ -136,7 +125,7 @@ fun OnboardingPreview() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 320)
+@Preview(showBackground = true, name = "Premiers pas dans Compose", widthDp = 320)
 @Composable
 fun GreetingsPreview() {
     DemoJetpackComposeTheme {
@@ -144,7 +133,7 @@ fun GreetingsPreview() {
     }
 }
 
-@Preview( name = "Réutiliser des composables")
+@Preview(name = "Réutiliser des composables")
 @Composable
 fun MyAppPreview() {
     DemoJetpackComposeTheme {
