@@ -45,9 +45,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/* ++++++++++++++++++++++++++++++++++++++++++
-   ++          TP-Jetpack_Compose          ++
-   ++++++++++++++++++++++++++++++++++++++++++
+/* +++++++++++++++++++++++++++++++++++++++++++++++
+   ++          TP-Jetpack_Compose               ++
+   +++++++++++++++++++++++++++++++++++++++++++++++
  */
 @Composable
 fun MyApp(modifier : Modifier = Modifier) {
