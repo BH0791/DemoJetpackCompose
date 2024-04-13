@@ -67,16 +67,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 // https://mvnrepository.com/artifact/androidx.compose.ui/ui-text-google-fonts
-    runtimeOnly("androidx.compose.ui:ui-text-google-fonts:1.6.4")
+    runtimeOnly(libs.androidx.ui.text.google.fonts)
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
+    implementation(libs.kotlinx.coroutines.android)
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
+    implementation(libs.kotlinx.coroutines.core)
     // https://mvnrepository.com/artifact/androidx.compose.material/material-icons-extended
-    implementation("androidx.compose.material:material-icons-extended:1.6.4")
+    implementation(libs.androidx.material.icons.extended.v165)
     // pour les icônes supplémentaires dans le Jetpack Compose
-    implementation("androidx.compose.material:material-icons-core:1.6.4")
-    implementation("androidx.compose.material:material-icons-extended:1.6.4")
+    implementation(libs.androidx.material.icons.core)
+    implementation(libs.material.icons.extended)
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-viewmodel-compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    implementation(libs.androidx.lifecycle.runtime.compose)
 }
