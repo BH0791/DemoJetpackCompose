@@ -97,6 +97,7 @@ fun Greeting(name : String) {
             ) {
                 Text(text = "Hello, ")
                 Text(text = name)
+                
             }
             ElevatedButton(
                     onClick = { expanded = ! expanded }
@@ -124,6 +125,7 @@ fun OnboardingScreen(
                 modifier = Modifier.padding(vertical = 24.dp),
                 onClick = onContinueClicked
         ) {
+
             Text("Continue")
         }
     }
