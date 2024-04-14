@@ -1,5 +1,6 @@
 package fr.hamtec.basicscodelab
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -143,7 +144,12 @@ fun OnboardingPreview() {
         OnboardingScreen(onContinueClicked = {})
     }
 }
-
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "GreetingPreviewDark"
+)
 @Preview(showBackground = true, name = "Premiers pas dans Compose", widthDp = 320)
 @Composable
 fun GreetingsPreview() {
