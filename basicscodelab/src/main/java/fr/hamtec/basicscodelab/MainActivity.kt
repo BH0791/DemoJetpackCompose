@@ -45,9 +45,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/* +++++++++++++++++++++++++++++++++++++++++++++++
-   ++          TP-Jetpack_Compose               ++
-   +++++++++++++++++++++++++++++++++++++++++++++++
+/* ++++++++++++++++++++++++++++++++++++++++++
+   ++          TP-Jetpack_Compose          ++       +++
+   ++++++++++++++++++++++++++++++++++++++++++
  */
 @Composable
 fun MyApp(modifier : Modifier = Modifier) {
@@ -85,7 +85,7 @@ fun Greeting(name : String) {
                     dampingRatio = Spring.DampingRatioMediumBouncy,
                     stiffness = Spring.StiffnessLow
             )
-    )
+    ) 
 
     Surface(
             color = MaterialTheme.colorScheme.primary,
@@ -99,11 +99,10 @@ fun Greeting(name : String) {
             ) {
                 Text(text = "Hello, ")
                 Text(text = name,
-                    style = MaterialTheme.typography.headlineMedium.copy(
-                        fontWeight = FontWeight.ExtraBold
-                    )
-                    )
-                
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                                fontWeight = FontWeight.ExtraBold
+                        )
+                        )
             }
             ElevatedButton(
                     onClick = { expanded = ! expanded }
@@ -131,7 +130,6 @@ fun OnboardingScreen(
                 modifier = Modifier.padding(vertical = 24.dp),
                 onClick = onContinueClicked
         ) {
-
             Text("Continue")
         }
     }
@@ -152,11 +150,7 @@ fun OnboardingPreview() {
     uiMode = UI_MODE_NIGHT_YES,
     name = "GreetingPreviewDark"
 )
-@Preview(
-    showBackground = true,
-    name = "Premiers pas dans Compose",
-    widthDp = 320
-)
+@Preview(showBackground = true, name = "Premiers pas dans Compose", widthDp = 320)
 @Composable
 fun GreetingsPreview() {
     DemoJetpackComposeTheme {
