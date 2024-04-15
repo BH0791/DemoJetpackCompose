@@ -1,47 +1,58 @@
 package com.example.themingcodelab
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.activity.viewModels
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.reply.data.LocalEmailsDataProvider
+import com.example.reply.ui.ReplyApp
+import com.example.reply.ui.ReplyHomeUIState
+import com.example.reply.ui.ReplyHomeViewModel
 import com.example.themingcodelab.ui.theme.DemoJetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
+    private val viewModel: ReplyHomeViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DemoJetpackComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            val uiState by viewModel.uiState.collectAsState()
+            ReplyApp(
+                replyHomeUIState = uiState,
+                closeDetailScreen = {
+                    viewModel.closeDetailScreen()
+                },
+                navigateToDetail = { emailId ->
+                    viewModel.setSelectedEmail(emailId)
                 }
-            }
+            )
         }
     }
 }
 
+@Preview(
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
+fun ReplyAppPreviewLight() {
+    ReplyApp(
+        replyHomeUIState = ReplyHomeUIState(
+            emails = LocalEmailsDataProvider.allEmails
+        )
     )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DemoJetpackComposeTheme {
-        Greeting("Android")
-    }
 }
