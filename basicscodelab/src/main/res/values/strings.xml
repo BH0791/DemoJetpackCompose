@@ -1,3 +1,6 @@
 <resources >
     <string name = "app_name" >BasicsCodelab</string >
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
+    <string name="welcome_to_the_basics_codelab_hamidb">Welcome to the Basics Codelab HamidB!</string>
 </resources >
