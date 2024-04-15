@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "DemoJetpackCompose"
 include(":app")
 include(":basicscodelab")
+include(":themingcodelab")
