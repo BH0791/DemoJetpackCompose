@@ -101,14 +101,15 @@ fun ReplyEmailListItem(
 
             Text(
                 text = email.subject,
-                modifier = Modifier.padding(top = 12.dp, bottom = 8.dp),
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Text(
                 text = email.body,
                 maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
