@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -37,6 +38,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationRail
+import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -60,7 +63,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DemoJetpackComposeTheme {
-                HomeScreen()
+//                MySootheAppPortrait()
+                MySootheAppLandscape()
             }
         }
     }
@@ -200,6 +204,58 @@ fun HomeSection(
 }
 
 @Composable
+private fun SootheNavigationRail(modifier: Modifier = Modifier) {
+    NavigationRail(
+        modifier = modifier.padding(start = 8.dp, end = 8.dp),
+        containerColor = MaterialTheme.colorScheme.background
+    ) {
+        Column(
+            modifier = modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            NavigationRailItem(
+                selected = true,
+                onClick = { /*TODO*/ },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.AccountCircle,
+                        contentDescription = null
+                    )
+                },
+                label = {
+                    Text(stringResource(R.string.bottom_navigation_profile))
+                }
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            NavigationRailItem(
+                selected = true,
+                onClick = { /*TODO*/ },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.Spa,
+                        contentDescription = null
+                    )
+                },
+                label = {
+                    Text(stringResource(R.string.bottom_navigation_home))
+                }
+            )
+        }
+    }
+}
+@Composable
+fun MySootheAppLandscape() {
+    DemoJetpackComposeTheme {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            Row {
+                SootheNavigationRail()
+                HomeScreen()
+            }
+        }
+    }
+}
+@Composable
 private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -264,12 +320,14 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 fun MySootheAppPortrait() {
     DemoJetpackComposeTheme {
         Scaffold(
-            bottomBar = { SootheBottomNavigation() }
-        ) {padding ->
+            bottomBar = { SootheBottomNavigation() },
+
+            ) { padding ->
             HomeScreen(Modifier.padding(padding))
         }
     }
 }
+
 // *********************************************************************************** méthodes data
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
@@ -366,8 +424,17 @@ fun SootheBottomNavigationPreview() {
         SootheBottomNavigation()
     }
 }
+
 @Preview(showBackground = true)
 @Composable
-fun MySootheAppPortraitPreview(){
+fun MySootheAppPortraitPreview() {
     MySootheAppPortrait()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SootheNavigationRailPreview() {
+    DemoJetpackComposeTheme {
+        SootheNavigationRail()
+    }
 }
