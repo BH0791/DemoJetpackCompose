@@ -259,6 +259,17 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     }
 }
 
+// ***********************************************************************************
+@Composable
+fun MySootheAppPortrait() {
+    DemoJetpackComposeTheme {
+        Scaffold(
+            bottomBar = { SootheBottomNavigation() }
+        ) {padding ->
+            HomeScreen(Modifier.padding(padding))
+        }
+    }
+}
 // *********************************************************************************** méthodes data
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
@@ -354,4 +365,9 @@ fun SootheBottomNavigationPreview() {
     DemoJetpackComposeTheme {
         SootheBottomNavigation()
     }
+}
+@Preview(showBackground = true)
+@Composable
+fun MySootheAppPortraitPreview(){
+    MySootheAppPortrait()
 }
