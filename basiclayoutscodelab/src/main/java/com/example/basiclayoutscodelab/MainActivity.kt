@@ -30,9 +30,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Spa
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -175,6 +179,7 @@ fun FavoriteCollectionsGrid(
         }
     }
 }
+
 // ******************************************************************************** MEP-Emplacements
 @Composable
 fun HomeSection(
@@ -189,21 +194,59 @@ fun HomeSection(
             modifier = Modifier
                 .paddingFromBaseline(top = 40.dp, bottom = 16.dp)
                 .padding(horizontal = 16.dp)
-            )
+        )
         content()
+    }
+}
+
+@Composable
+private fun SootheBottomNavigation(modifier: Modifier = Modifier) {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        modifier = modifier
+    ) {
+        NavigationBarItem(
+            selected = true,
+            onClick = { /*TODO*/ },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Spa,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(text = stringResource(id = R.string.bottom_navigation_home))
+            }
+        )
+        NavigationBarItem(
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = null
+                )
+            },
+            label = {
+                Text(
+                    text = stringResource(R.string.bottom_navigation_profile)
+                )
+            },
+            selected = false,
+            onClick = {}
+        )
     }
 }
 
 // ***************************************************************************************** MEP-FID
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier){
+fun HomeScreen(modifier: Modifier = Modifier) {
 
     Column(
         modifier
             .verticalScroll(rememberScrollState())
     ) {
-        Spacer(modifier = Modifier
-            .height(16.dp)
+        Spacer(
+            modifier = Modifier
+                .height(16.dp)
         )
         SearchBar(Modifier.padding(horizontal = 16.dp))
         HomeSection(title = R.string.align_your_body) {
@@ -215,6 +258,7 @@ fun HomeScreen(modifier: Modifier = Modifier){
         Spacer(modifier = Modifier.height(16.dp))
     }
 }
+
 // *********************************************************************************** méthodes data
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
@@ -295,10 +339,19 @@ fun HomeSectionPreview() {
         }
     }
 }
-@Preview(showBackground = true, heightDp = 180)
+
+@Preview(showBackground = true)
 @Composable
-fun HomeScreenpreview(){
+fun HomeScreenpreview() {
     DemoJetpackComposeTheme {
         HomeScreen()
+    }
+}
+
+@Preview(showBackground = true, heightDp = 180)
+@Composable
+fun SootheBottomNavigationPreview() {
+    DemoJetpackComposeTheme {
+        SootheBottomNavigation()
     }
 }
