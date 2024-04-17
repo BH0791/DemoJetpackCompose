@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,7 +26,9 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -53,7 +56,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DemoJetpackComposeTheme {
-                SearchBar()
+                HomeScreen()
             }
         }
     }
@@ -82,7 +85,6 @@ fun SearchBar(
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = 56.dp)
-            .padding(top = 30.dp)
     )
 }
 
@@ -173,7 +175,6 @@ fun FavoriteCollectionsGrid(
         }
     }
 }
-
 // ******************************************************************************** MEP-Emplacements
 @Composable
 fun HomeSection(
@@ -193,6 +194,27 @@ fun HomeSection(
     }
 }
 
+// ***************************************************************************************** MEP-FID
+@Composable
+fun HomeScreen(modifier: Modifier = Modifier){
+
+    Column(
+        modifier
+            .verticalScroll(rememberScrollState())
+    ) {
+        Spacer(modifier = Modifier
+            .height(16.dp)
+        )
+        SearchBar(Modifier.padding(horizontal = 16.dp))
+        HomeSection(title = R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
+        HomeSection(title = R.string.favorite_collections) {
+            FavoriteCollectionsGrid()
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+    }
+}
 // *********************************************************************************** méthodes data
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
@@ -271,5 +293,12 @@ fun HomeSectionPreview() {
         HomeSection(R.string.align_your_body) {
             AlignYourBodyRow()
         }
+    }
+}
+@Preview(showBackground = true, heightDp = 180)
+@Composable
+fun HomeScreenpreview(){
+    DemoJetpackComposeTheme {
+        HomeScreen()
     }
 }
