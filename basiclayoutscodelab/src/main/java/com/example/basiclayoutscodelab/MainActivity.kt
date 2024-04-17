@@ -39,6 +39,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -140,6 +141,7 @@ fun FavoriteCollectionCard(
         }
     }
 }
+
 @Composable
 fun AlignYourBodyRow(
     modifier: Modifier = Modifier
@@ -154,6 +156,7 @@ fun AlignYourBodyRow(
         }
     }
 }
+
 @Composable
 fun FavoriteCollectionsGrid(
     modifier: Modifier = Modifier
@@ -170,6 +173,26 @@ fun FavoriteCollectionsGrid(
         }
     }
 }
+
+// ******************************************************************************** MEP-Emplacements
+@Composable
+fun HomeSection(
+    @StringRes title: Int,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Column(modifier) {
+        Text(
+            text = stringResource(title),
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .paddingFromBaseline(top = 40.dp, bottom = 16.dp)
+                .padding(horizontal = 16.dp)
+            )
+        content()
+    }
+}
+
 // *********************************************************************************** méthodes data
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
@@ -193,6 +216,7 @@ private data class DrawableStringPair(
     @DrawableRes val drawable: Int,
     @StringRes val text: Int
 )
+
 // **************************************************************************************** Preview
 @Preview(showBackground = true)
 @Composable
@@ -225,15 +249,27 @@ fun FavoriteCollectionCardPreview() {
         )
     }
 }
+
 @Preview(showBackground = true)
 @Composable
-fun AlignYourBodyRowPreview(){
+fun AlignYourBodyRowPreview() {
     AlignYourBodyRow()
 }
+
 @Preview(showBackground = true)
 @Composable
-fun FavoriteCollectionsGridPreview(){
+fun FavoriteCollectionsGridPreview() {
     DemoJetpackComposeTheme {
         FavoriteCollectionsGrid(modifier = Modifier.padding(8.dp))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeSectionPreview() {
+    DemoJetpackComposeTheme {
+        HomeSection(R.string.align_your_body) {
+            AlignYourBodyRow()
+        }
     }
 }
