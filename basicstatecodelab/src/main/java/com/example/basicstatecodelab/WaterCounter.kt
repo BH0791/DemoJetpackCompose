@@ -34,7 +34,7 @@ fun WaterCounterAffichage(
 
             if (showTask) {
                 WellnessTaskItem(
-                    onClose = { showTask = false },
+                    //onClose = { showTask = false },
                     taskName = "Avez-vous fait votre promenade de 15 minutes aujourd'hui ?"
                 )
             }
@@ -49,6 +49,11 @@ fun WaterCounterAffichage(
                 onClick = { count = 0 },
                 Modifier.padding(start = 8.dp)
             ) {
+
+
+
+
+
                 Text("Clear water count")
             }
         }
@@ -71,6 +76,7 @@ fun StatelessCounter(
             Modifier.padding(top = 8.dp),
             enabled = count < 10
         ) {
+
             Text("Add one")
         }
     }
@@ -78,10 +84,10 @@ fun StatelessCounter(
 @Composable
 fun StatefulCounter(modifier: Modifier = Modifier){
     var count by rememberSaveable { mutableStateOf(0) }
-    var juiceCount by rememberSaveable { mutableStateOf(0) }
+    //var juiceCount by rememberSaveable { mutableStateOf(0) }
 Row {
     StatelessCounter(count , {count++}, modifier)
-    StatelessCounter(juiceCount, { juiceCount++ }, modifier)
+    //StatelessCounter(juiceCount, { juiceCount++ }, modifier)
 }
 
 }
