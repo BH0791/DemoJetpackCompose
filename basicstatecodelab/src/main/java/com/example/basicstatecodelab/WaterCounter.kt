@@ -1,6 +1,7 @@
 package com.example.basicstatecodelab
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -19,23 +20,49 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun WaterCounter(modifier: Modifier = Modifier) {
+fun WaterCounterAffichage(modifier: Modifier = Modifier) {
     Column(modifier = modifier.padding(16.dp)) {
 
         var count by remember { mutableStateOf(0) }
 
-        Text(text = "You've had ${count} glasses.")
-        Button(
-            onClick = { count++  },
-            Modifier.padding(top = 8.dp)
-        ) {
-            Text(text = "Add one")
+        if (count > 0) {
+
+            var showTask by remember { mutableStateOf(true) }
+
+            if (showTask) {
+                WellnessTaskItem(
+                    onClose = { showTask = false },
+                    taskName = "Avez-vous fait votre promenade de 15 minutes aujourd'hui ?"
+                )
+            }
+            Text(text = "You've had ${count} glasses.")
         }
 
+        Row(Modifier.padding(top = 8.dp)) {
+            Button(onClick = { count++ }, enabled = count < 10) {
+                Text("Add one")
+            }
+            Button(
+                onClick = { count = 0 },
+                Modifier.padding(start = 8.dp)) {
+                Text("Clear water count")
+            }
+        }
     }
 
 }
-
+@Composable
+fun WaterCounter(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.padding(16.dp)) {
+        var count by remember { mutableStateOf(0) }
+        if (count > 0) {
+            Text("You've had $count glasses.")
+        }
+        Button(onClick = { count++ }, Modifier.padding(top = 8.dp), enabled = count < 10) {
+            Text("Add one")
+        }
+    }
+}
 @Preview(showBackground = true)
 @Composable
 fun WaterCounterPreview() {
