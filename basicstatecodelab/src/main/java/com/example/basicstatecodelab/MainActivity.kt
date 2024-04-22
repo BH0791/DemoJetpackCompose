@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            println("SetContent : onCreate()")
             DemoJetpackComposeTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),

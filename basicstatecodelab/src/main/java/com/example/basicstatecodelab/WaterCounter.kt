@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -16,6 +17,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.example.basicstatecodelab.ui.theme.DemoJetpackComposeTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,9 +39,10 @@ fun WaterCounterAffichage(
 
             if (showTask) {
                 WellnessTaskItem(
-                    //onClose = { showTask = false },
-                    taskName = "Avez-vous fait votre promenade de 15 minutes aujourd'hui ?"
-                )
+                    taskName = "Avez-vous fait votre promenade de 15 minutes aujourd'hui ?",
+                    checked = false,
+                    onCheckedChange = { /*TODO*/ },
+                    onClose = { /*TODO*/ })
             }
             Text(text = "You've had ${count} glasses.")
         }
@@ -60,6 +66,7 @@ fun WaterCounterAffichage(
     }
 
 }
+
 
 @Composable
 fun StatelessCounter(
@@ -96,5 +103,15 @@ Row {
 fun WaterCounterPreview() {
     DemoJetpackComposeTheme {
         StatelessCounter(0, {})
+    }
+}
+//@PreviewScreenSizes
+//@PreviewFontScale
+@PreviewLightDark
+@Preview(showBackground = true, name = "StatelessCounter", locale = "fr-rFR", backgroundColor = 0xFF75FFEE)
+@Composable
+fun StatelessCounterPreview(){
+    DemoJetpackComposeTheme {
+        StatelessCounter(0,{})
     }
 }

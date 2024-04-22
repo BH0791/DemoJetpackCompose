@@ -8,9 +8,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.basicstatecodelab.ui.theme.DemoJetpackComposeTheme
 
-/* Pour la liste des tâches et m"thode qui génère de fausses données */
+/* ! Pour la liste des tâches et méthode qui génère de fausses données
+   ! Notez que dans une application réelle, vous récupérez vos données à partir de votre couche de données.*/
 fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
 
+/**
+ * Fonction composable qui va créer la liste.
+ */
 @Composable
 fun WellnessTasksList(
     modifier: Modifier = Modifier,
