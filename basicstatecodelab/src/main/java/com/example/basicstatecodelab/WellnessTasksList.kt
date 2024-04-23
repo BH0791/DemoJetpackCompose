@@ -4,34 +4,33 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.basicstatecodelab.ui.theme.DemoJetpackComposeTheme
 
-/* ! Pour la liste des tâches et méthode qui génère de fausses données
-   ! Notez que dans une application réelle, vous récupérez vos données à partir de votre couche de données.*/
-fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
 
 /**
  * Fonction composable qui va créer la liste.
  */
 @Composable
 fun WellnessTasksList(
-    modifier: Modifier = Modifier,
-    list: List<WellnessTask> = remember { getWellnessTasks() }
+    list: List<WellnessTask>,
+    onCloseTask: (WellnessTask) -> Unit,
+    modifier: Modifier = Modifier
 ) {
-    LazyColumn(
-        modifier = modifier
-    ) {
-        items(list) { task ->
-            WellnessTaskItem(taskName = task.label)
+    LazyColumn(modifier = modifier) {
+        items(
+            items = list,
+            key = { task -> task.id }
+        ) { task ->
+            WellnessTaskItem(taskName = task.label, onClose = { onCloseTask(task) })
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
-fun WellnessTasksListPreview(){
+fun WellnessTasksListPreview() {
     DemoJetpackComposeTheme {
-        WellnessTasksList()
+        WellnessTaskItem(taskName = "Hi", { })
     }
 }
