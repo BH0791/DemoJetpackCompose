@@ -2,15 +2,17 @@ package com.example.basicstatecodelab
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 /* Représente l'écran principal et appelez la fonction WaterCounter */
 /* ---------------------------------------------------------------- */
 
 @Composable
-fun WellnessScreen(modifier: Modifier = Modifier) {
+fun WellnessScreen(
+    modifier: Modifier = Modifier,
+    wellnessViewModel: WellnessViewModel = viewModel()
+) {
     Column {
         StatefulCounter()
         /*
@@ -21,11 +23,16 @@ fun WellnessScreen(modifier: Modifier = Modifier) {
          --  toMutableStateList()
           ! Créer une instance de [MutableList]<T> à partir d'une collection qui est observable et peut être instantanée.
          */
-        val list = remember { getWellnessTasks().toMutableStateList() }
-        WellnessTasksList(list = list, onCloseTask = { task -> list.remove(task) })
+        //val list = remember { getWellnessTasks().toMutableStateList() }
+        WellnessTasksList(
+            list = wellnessViewModel.tasks,
+            onCheckedTask = { task, checked ->
+                wellnessViewModel.changeTaskChecked(task, checked)
+            },
+            onCloseTask = { task ->
+                wellnessViewModel.remove(task)
+            }
+        )
     }
 }
 
-/* ! Pour la liste des tâches et méthode qui génère de fausses données
-   ! Notez que dans une application réelle, vous récupérez vos données à partir de votre couche de données.*/
-fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }

@@ -31,10 +31,8 @@ fun WellnessTaskItem(
     onClose: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    //println("Méthode WellnessTaskItem()")
     Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        modifier = modifier, verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             modifier = Modifier
@@ -47,10 +45,7 @@ fun WellnessTaskItem(
             onCheckedChange = onCheckedChange
         )
         IconButton(onClick = onClose) {
-            Icon(
-                Icons.Filled.Close,
-                contentDescription = "Close"
-            )
+            Icon(Icons.Filled.Close, contentDescription = "Close")
         }
     }
 }
