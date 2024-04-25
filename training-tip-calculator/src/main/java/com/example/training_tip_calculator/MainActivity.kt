@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.training_tip_calculator.ui.theme.DemoJetpackComposeTheme
 import java.text.NumberFormat
-
+// Changement d'état et recomposition à l'œuvre
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
